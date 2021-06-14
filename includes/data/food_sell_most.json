@@ -1,0 +1,94 @@
+{
+    "title": "favorites",
+    "users_favorites": [{
+            "id": 1,
+            "favorite_food": "Borax",
+            "favorite_resturant": "Greg"
+
+        },
+        {
+            "id": 2,
+            "favorite_food": "Choclate cake",
+            "favorite_resturant": "Nola"
+
+        },
+        {
+            "id": 3,
+            "favorite_food": "Lemon pie",
+            "favorite_resturant": "Nono Mimi"
+
+        },
+        {
+            "id": 4,
+            "favorite_food": "Strawberries cake",
+            "favorite_resturant": "Cafe Cafe"
+
+        },
+        {
+            "id": 5,
+            "favorite_food": "Ice cream",
+            "favorite_resturant": "Golda"
+
+        },
+        {
+            "id": 6,
+            "favorite_food": "White snow cake",
+            "favorite_resturant": "Bakery"
+
+        },
+        {
+            "id": 7,
+            "favorite_food": "Salmon sandwitch",
+            "favorite_resturant": "Naffis"
+
+        },
+        {
+            "id": 8,
+            "favorite_food": "Pie",
+            "favorite_resturant": "Cafe nimrod"
+
+        },
+        {
+            "id": 9,
+            "favorite_food": "Kebab",
+            "favorite_resturant": "Cafe Cafe"
+
+        },
+        {
+            "id": 19,
+            "favorite_food": "Hot dog",
+            "favorite_resturant": "Lili place"
+
+        },
+        {
+            "id": 16,
+            "favorite_food": "Hamburger",
+            "favorite_resturant": "Agadir"
+
+        },
+        {
+            "id": 20,
+            "favorite_food": "Pie",
+            "favorite_resturant": "Cafe nimrod"
+
+        },
+        {
+            "id": 22,
+            "favorite_food": "Roast chicken",
+            "favorite_resturant": "Greg"
+
+        },
+        {
+            "id": 23,
+            "favorite_food": "Ice cream",
+            "favorite_resturant": "Cafe nimrod"
+
+        },
+        {
+            "id": 24,
+            "favorite_food": "Ice cream",
+            "favorite_resturant": "Cafe nimrod"
+
+        }
+    ]
+}

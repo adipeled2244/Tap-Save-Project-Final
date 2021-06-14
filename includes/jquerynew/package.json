@@ -1,0 +1,23 @@
+{
+  "name": "jquery-type-char",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fhamon/jQuery-type-char"
+  },
+  "author": "fhamon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fhamon/jQuery-type-char/issues"
+  },
+  "homepage": "https://github.com/fhamon/jQuery-type-char#readme",
+  "dependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-uglify": "^4.0.0"
+  }
+}
