@@ -1,37 +1,45 @@
 <?php
     include 'db.php';
+    include 'config.php';
+
+?>
+
+<?php
     session_start();
-?>
-<?php
- $prodId = $_GET["prodId"];
- $query = "SELECT *
- FROM offersUsers_221 ou
- INNER JOIN users_221 u ON u.user_id = ou.user_id
- INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
- WHERE 
-    o.offer_id =".$prodId;
- 
- $result = mysqli_query($connection, $query);
- if($result) {
- $row = mysqli_fetch_assoc($result); //there is only 1 item with id=X
- }
- else die("DB query failed.");
+    if (!isset($_SESSION["user_id"]))
+        header('Location: ' . URL . 'login.php');  
 ?>
 
+<?php
+    $prodId = $_GET["prodId"];
+    $query = "SELECT *
+    FROM offersUsers_221 ou
+    INNER JOIN users_221 u ON u.user_id = ou.user_id
+    INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
+    WHERE 
+        o.offer_id =".$prodId;
+    
+    $result = mysqli_query($connection, $query);
+    if($result) {
+    $row = mysqli_fetch_assoc($result); //there is only 1 item with id=X
+    }
+    else die("DB query failed.");
+?>
+
 
 <?php
- $prodId2 = $_GET["prodId"];
+    $prodId2 = $_GET["prodId"];
 
- $queryInterest = "SELECT *
- FROM offersUsers_221 ou
- INNER JOIN users_221 u ON u.user_id = ou.user_id
- INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
- WHERE offer_status='open'";
+    $queryInterest = "SELECT *
+    FROM offersUsers_221 ou
+    INNER JOIN users_221 u ON u.user_id = ou.user_id
+    INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
+    WHERE offer_status='open'";
 
- $resultInterest = mysqli_query($connection, $queryInterest);
- if(!$resultInterest) {
-    die("DB query failed.");
- }
+    $resultInterest = mysqli_query($connection, $queryInterest);
+    if(!$resultInterest) {
+        die("DB query failed.");
+    }
 ?>
 
 

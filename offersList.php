@@ -1,30 +1,38 @@
 <?php
     include 'db.php';
-    session_start();
+    include 'config.php';
+
 ?>
+
+<?php
+    session_start();
+    if (!isset($_SESSION["user_id"]))
+        header('Location: ' . URL . 'login.php');  
+?>
+
 <?php 
 
-if(isset($_GET['deleteItem'])){
-    $idItemToDelete = $_GET['deleteItem'];
-    $query_delete="DELETE FROM offers_221 WHERE offer_id=" . $idItemToDelete;
-    $result_delete= mysqli_query($connection, $query_delete);
-    if(!$result_delete) {
-        die("DB query failed.");
+    if(isset($_GET['deleteItem'])){
+        $idItemToDelete = $_GET['deleteItem'];
+        $query_delete="DELETE FROM offers_221 WHERE offer_id=" . $idItemToDelete;
+        $result_delete= mysqli_query($connection, $query_delete);
+        if(!$result_delete) {
+            die("DB query failed.");
+        }
     }
-}
 
 ?> 
 <?php
- $query = "SELECT *
- FROM offersUsers_221 ou
- INNER JOIN users_221 u ON u.user_id = ou.user_id
- INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
- WHERE offer_status='open'";
+    $query = "SELECT *
+    FROM offersUsers_221 ou
+    INNER JOIN users_221 u ON u.user_id = ou.user_id
+    INNER JOIN offers_221 o ON o.offer_id = ou.offer_id
+    WHERE offer_status='open'";
 
- $result = mysqli_query($connection, $query);
- if(!$result) {
-    die("DB query failed.");
- }
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
+        die("DB query failed.");
+    }
 ?>
 
 

@@ -1,64 +1,60 @@
 <?php
-include 'db.php';
-include 'config.php';
-session_start();
+    include 'db.php';
+    include 'config.php';
+    session_start();
 ?>
 
 <?php
-if(isset($_GET["getout"]))
-    session_destroy();
+    if(isset($_GET["getout"]))
+        session_destroy();
 ?>
 
 <?php
-if(isset($_GET["deleteaccount"]))
-{
+    if(isset($_GET["deleteaccount"])){
+    $query_delete="DELETE FROM users_221 WHERE user_id=" . $_SESSION["user_id"] ;
+    $result_delete= mysqli_query($connection, $query_delete);
 
-
-$query_delete="DELETE FROM users_221 WHERE user_id=" . $_SESSION["user_id"] ;
-$result_delete= mysqli_query($connection, $query_delete);
-
-if(!$result_delete) {
-    die("DB query failed.");
-}
-}
+  if(!$result_delete) {
+        die("DB query failed.");
+    }
+    }
 ?>
 
 <!-- from registration -->
 <?php
 
-if (isset($_GET["state"])) 
-{
-    $state  = "register";
- 
-    $userName     = mysqli_real_escape_string($connection, $_GET['username']);
-    $userMail     = mysqli_real_escape_string($connection, $_GET['usermail']);
-    $userAddress    = mysqli_real_escape_string($connection, $_GET['useraddress']);
-    $userPhone    = mysqli_real_escape_string($connection, $_GET['userphone']);
-    $userUrl    = mysqli_real_escape_string($connection, $_GET['userurl']);
-    $userPassword   = mysqli_real_escape_string($connection, $_GET['userpass']);
-    $userType  = mysqli_real_escape_string($connection, $_GET['usertype']);
+    if (isset($_GET["state"])) {
+        $state  = "register";
+    
+        $userName     = mysqli_real_escape_string($connection, $_GET['username']);
+        $userMail     = mysqli_real_escape_string($connection, $_GET['usermail']);
+        $userAddress    = mysqli_real_escape_string($connection, $_GET['useraddress']);
+        $userPhone    = mysqli_real_escape_string($connection, $_GET['userphone']);
+        $userUrl    = mysqli_real_escape_string($connection, $_GET['userurl']);
+        $userPassword   = mysqli_real_escape_string($connection, $_GET['userpass']);
+        $userType  = mysqli_real_escape_string($connection, $_GET['usertype']);
 
-    $query_insert = "INSERT INTO studDB21a.users_221 (
-       user_id,
-       user_name ,
-       user_mail ,
-       user_address ,
-       user_phone ,
-       user_url ,
-        user_pass ,
-        user_type
-        )
-        VALUES (
-        NULL , '$userName', '$userMail', '$userAddress', '$userPhone', '$userUrl', '$userPassword', '$userType'
-        )";
+        $query_insert = "INSERT INTO studDB21a.users_221 (
+        user_id,
+        user_name ,
+        user_mail ,
+        user_address ,
+        user_phone ,
+        user_url ,
+            user_pass ,
+            user_type
+            )
+            VALUES (
+            NULL , '$userName', '$userMail', '$userAddress', '$userPhone', '$userUrl', '$userPassword', '$userType'
+            )";
 
-$result_register= mysqli_query($connection,  $query_insert);
+    $result_register= mysqli_query($connection,  $query_insert);
 
-if(!$result_register) {
-    die("DB query failed.");
-}
+    if(!$result_register) {
+        die("DB query failed.");
+    }
 
-}
+    }
 
 
 
@@ -132,7 +128,7 @@ if(!$result_register) {
                     <input type="submit" value="SIGN IN">
                     <div class="error-message"><?php if(isset($message)) echo "&#10008;  ".$message;?></div><br>
                 </form>
-                <p>Don't have an Account? <a href="register.php"> Register Now!</a></p>
+                <p>Don't have an Account? <a href="register.html"> Register Now!</a></p>
             </div>
         </div>
         <div class="colorlibcopy-agile">

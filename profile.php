@@ -1,45 +1,53 @@
 <?php
     include 'db.php';
-    session_start();
+    include 'config.php';
+
 ?>
+
+<?php
+    session_start();
+    if (!isset($_SESSION["user_id"]))
+        header('Location: ' . URL . 'login.php');  
+?>
+
 <?php
 
-  
-// edit
-if (isset($_GET["state"])) 
-{
-    $state  = "edit";
-    $userName     = mysqli_real_escape_string($connection, $_GET['username']);
-    $userMail     = mysqli_real_escape_string($connection, $_GET['usermail']);
-    $userAddress    = mysqli_real_escape_string($connection, $_GET['useraddress']);
-    $userPhone    = mysqli_real_escape_string($connection, $_GET['userphone']);
-    $userUrl    = mysqli_real_escape_string($connection, $_GET['userurl']);
-    $query_update = " UPDATE studDB21a.users_221 SET 
-    user_name ='$userName',
-    user_mail ='$userMail',
-    user_address ='$userAddress',
-    user_phone ='$userPhone',
-    user_url ='$userUrl'
-     WHERE users_221.user_id =".$_SESSION['user_id'].";";  
+    
+    // edit
+    if (isset($_GET["state"])) 
+    {
+        $state  = "edit";
+        $userName     = mysqli_real_escape_string($connection, $_GET['username']);
+        $userMail     = mysqli_real_escape_string($connection, $_GET['usermail']);
+        $userAddress    = mysqli_real_escape_string($connection, $_GET['useraddress']);
+        $userPhone    = mysqli_real_escape_string($connection, $_GET['userphone']);
+        $userUrl    = mysqli_real_escape_string($connection, $_GET['userurl']);
+        $query_update = " UPDATE studDB21a.users_221 SET 
+        user_name ='$userName',
+        user_mail ='$userMail',
+        user_address ='$userAddress',
+        user_phone ='$userPhone',
+        user_url ='$userUrl'
+        WHERE users_221.user_id =".$_SESSION['user_id'].";";  
 
-$resultupdate = mysqli_query($connection,  $query_update);
+    $resultupdate = mysqli_query($connection,  $query_update);
 
-if(!$resultupdate) {
-    die("DB query failed.");
-}
+    if(!$resultupdate) {
+        die("DB query failed.");
+    }
 
-}
+    }
 
 
- $query = "SELECT *
- FROM users_221 where  user_id= '". $_SESSION["user_id"] . "' ";
- $result = mysqli_query($connection, $query);
- if(!$result) {
-    die("DB query failed.");
- }
- $row = mysqli_fetch_assoc($result); 
-$_SESSION["user_url"]=$row["user_url"];
-$_SESSION["user_mail"]=$row["user_mail"];
+    $query = "SELECT *
+    FROM users_221 where  user_id= '". $_SESSION["user_id"] . "' ";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
+        die("DB query failed.");
+    }
+    $row = mysqli_fetch_assoc($result); 
+    $_SESSION["user_url"]=$row["user_url"];
+    $_SESSION["user_mail"]=$row["user_mail"];
 
 ?>
 
@@ -49,7 +57,7 @@ $_SESSION["user_mail"]=$row["user_mail"];
 
 
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -68,7 +76,7 @@ $_SESSION["user_mail"]=$row["user_mail"];
             </div>
             <a href="index.php" id="logo"> </a>
             <ul class="nav-items">
-                <li><a href="offersList.php" >Offers</a></li>
+                <li><a href="offersList.php">Offers</a></li>
                 <?php if($_SESSION["user_type"]=="business") 
                 echo "<li><a href='formNewOffer.php'>Add offer</a></li>";
                 ?>
@@ -86,7 +94,7 @@ $_SESSION["user_mail"]=$row["user_mail"];
                 <button type="submit" class="fas fa-search"></button>
             </form>
 
-            <a href="profile.php" >
+            <a href="profile.php">
                 <img id="profile" src=<?php echo "'" . $_SESSION["user_url"] . "'" ?> alt="User Image">
             </a>
         </nav>
@@ -128,12 +136,13 @@ $_SESSION["user_mail"]=$row["user_mail"];
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap bg-light">
                                     <h6 class="mb-0">My favorite food:</h6>
-                                    <span class="text-secondary" id="favorite1" data-id =<?php echo "'" . $_SESSION["user_id"] . "'" ?>></span>
+                                    <span class="text-secondary" id="favorite1"
+                                        data-id=<?php echo "'" . $_SESSION["user_id"] . "'" ?>></span>
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap bg-light">
                                     <h6 class="mb-0">My favorite resturant:</h6>
-                                    <span class="text-secondary" id="favorite2" ></span>
+                                    <span class="text-secondary" id="favorite2"></span>
                                 </li>
 
                             </ul>
@@ -194,8 +203,10 @@ $_SESSION["user_mail"]=$row["user_mail"];
                                         <a class="btn btn-info " target="_self" href="edit.php">Edit</a>
                                     </div>
                                     <div>
-                                        <a class="btn text-white bg-warning" target="_self" href="login.php?getout=1" id="logout">Logout</a>
-                                        <a class="btn text-white bg-danger" target="_self" href="login.php?deleteaccount=1" id="deleteAccount">Delete Account</a>
+                                        <a class="btn text-white bg-warning" target="_self" href="login.php?getout=1"
+                                            id="logout">Logout</a>
+                                        <a class="btn text-white bg-danger" target="_self"
+                                            href="login.php?deleteaccount=1" id="deleteAccount">Delete Account</a>
                                     </div>
                                 </div>
                             </div>

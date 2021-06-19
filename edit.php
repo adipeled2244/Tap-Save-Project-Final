@@ -1,19 +1,27 @@
 <?php
     include 'db.php';
-    session_start();
+    include 'config.php';
+
 ?>
 
 <?php
+    session_start();
+    if (!isset($_SESSION["user_id"]))
+        header('Location: ' . URL . 'login.php');  
+?>
 
- $query = "SELECT *
- FROM users_221 WHERE users_221.user_id =".$_SESSION['user_id'].";";  
 
- $result = mysqli_query($connection, $query);
- if(!$result) {
-    die("DB query failed.");
- }
- $row = mysqli_fetch_assoc($result); 
- $state = "edit";
+<?php
+
+    $query = "SELECT *
+    FROM users_221 WHERE users_221.user_id =".$_SESSION['user_id'].";";  
+
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
+        die("DB query failed.");
+    }
+    $row = mysqli_fetch_assoc($result); 
+    $state = "edit";
 ?>
 
 
